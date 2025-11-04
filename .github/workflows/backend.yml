@@ -27,7 +27,7 @@ jobs:
           python-version: '3.12'  
 
       - name: Create Virtual Environment
-        run: python3 -m venv myenv
+        run: python -m venv myenv
         working-directory: ./backend
 
       - name: Install backend dependencies
