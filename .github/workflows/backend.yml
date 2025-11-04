@@ -48,7 +48,7 @@ jobs:
       - name: Run tests with pytest
         run: |
           source myenv/bin/activate
-          pytest tests/ --doctest-modules -q --disable-warnings
+          pytest api/tests/ --doctest-modules -q --disable-warnings
         working-directory: ./backend  
 
       - name: Deploy to Production
