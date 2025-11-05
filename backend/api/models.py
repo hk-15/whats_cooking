@@ -13,7 +13,7 @@ class Recipe(models.Model):
         return self.name
 
 class Meal(models.Model):
-    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    recipe = models.ForeignKey(Recipe, related_name='meals', on_delete=models.CASCADE)
     rating = models.PositiveIntegerField(default=0)
     date_cooked = models.DateField()
     created = models.DateTimeField(auto_now_add=True)
@@ -24,8 +24,8 @@ class Meal(models.Model):
 
 class Comment(models.Model):
     text = models.TextField()
-    meal = models.OneToOneField(Meal, on_delete=models.CASCADE, primary_key=True)
-    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    meal = models.OneToOneField(Meal, related_name='comment', on_delete=models.CASCADE, primary_key=True)
+    recipe = models.ForeignKey(Recipe, related_name='comments', on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
