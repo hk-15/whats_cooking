@@ -13,6 +13,7 @@ class Recipe(models.Model):
         return self.name
 
 class Meal(models.Model):
+    name = models.CharField(max_length=100)
     recipe = models.ForeignKey(Recipe, related_name='meals', on_delete=models.CASCADE)
     rating = models.PositiveIntegerField(default=0)
     date_cooked = models.DateField()
@@ -20,7 +21,7 @@ class Meal(models.Model):
     modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.recipe.name} cooked on {self.date_cooked}'
+        return f'{self.name} cooked on {self.date_cooked}'
 
 class Comment(models.Model):
     text = models.TextField()

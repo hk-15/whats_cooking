@@ -1,21 +1,16 @@
 from rest_framework import serializers
 from .models import *
 
-class CommentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Comment
-        fields = ('recipe', 'meal', 'text')
-
 class MealSerializer(serializers.ModelSerializer):
-    comment = CommentSerializer()
+    comment = serializers.SlugRelatedField(slug_field="text", queryset=Comment.objects.all())
 
     class Meta:
         model = Meal
-        fields = ('id', 'recipe', 'rating', 'date_cooked', 'comment')
+        fields = ('id', 'name', 'recipe', 'rating', 'date_cooked', 'comment')
 
 class RecipeSerializer(serializers.ModelSerializer):
-    comments = CommentSerializer(many=True, read_only=True)
-    meals = MealSerializer(many=True, read_only=True)
+    comments = serializers.SlugRelatedField(many=True, slug_field="text", queryset=Comment.objects.all())
+    meals = serializers.SlugRelatedField(many=True, slug_field="id", queryset=Meal.objects.all())
 
     class Meta:
         model = Recipe
