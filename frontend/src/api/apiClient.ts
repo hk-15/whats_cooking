@@ -3,7 +3,7 @@ export interface Meal {
     name: string,
     recipeId: number,
     rating: number,
-    dateCooked: string,
+    date_cooked: string,
     comment?: string
 }
 

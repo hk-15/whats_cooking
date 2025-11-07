@@ -1,9 +1,11 @@
 import type { JSX } from "react";
+import { MealPicker } from "../../components/meals/mealPicker/MealPicker";
+import { Page } from "../page/Page";
 
 export function Home(): JSX.Element {
   return (
-    <div>
-      <p>This is where the posts will be</p>
-    </div>
+    <Page>
+        <MealPicker />
+    </Page>
   );
 }
