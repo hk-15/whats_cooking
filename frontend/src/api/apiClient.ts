@@ -1,37 +1,48 @@
 export interface Meal {
-    id: number,
-    name: string,
-    recipeId: number,
-    rating: number,
-    date_cooked: string,
-    comment?: string
+  id: number;
+  name: string;
+  recipe: number;
+  rating: number;
+  date_cooked: string;
+  comment?: string;
 }
 
 export interface Recipe {
-    id : number,
-    name: string,
-    url?: string,
-    source?: string,
-    times_cooked: number,
-    average_rating: number,
-    comments: string[]
-    meals: number[]
+  id: number;
+  name: string;
+  url_source?: string;
+  source?: string;
+  times_cooked: number;
+  average_rating: number;
+  comments: string[];
+  meals: number[];
 }
 
+export const emptyRecipe: Recipe = {
+  id: 0,
+  name: "",
+  url_source: "",
+  source: "",
+  times_cooked: 0,
+  average_rating: 0,
+  comments: [],
+  meals: [],
+};
+
 export async function getMeals(): Promise<Meal[]> {
-    const response = await fetch(`http://127.0.0.1:8000/meal/`, {
-        headers: {
-            "Content-Type": "application/json"
-        }
-    });
-    return await response.json();
+  const response = await fetch(`http://127.0.0.1:8000/meal/`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return await response.json();
 }
 
 export async function getRecipes(): Promise<Recipe[]> {
-    const response = await fetch(`http://127.0.0.1:8000/recipe/`, {
-        headers: {
-            "Content-Type": "application/json"
-        }
-    });
-    return await response.json();
+  const response = await fetch(`http://127.0.0.1:8000/recipe/`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return await response.json();
 }
