@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-export const closePopUps = (callback: () => void) => {
+export const ClosePopUps = (callback: () => void) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { closePopUps } from "../../closePopUps/ClosePopUps";
+import { ClosePopUps } from "../../closePopUps/ClosePopUps";
 import type { Recipe } from "../../../api/apiClient";
 import { getStarRating } from "../../getStarRating/getStarRating";
 
@@ -13,7 +13,7 @@ export const RecipePopUp: React.FC<Props> = ({
   closePopUp,
   recipe,
 }) => {
-  const ref = closePopUps(() => {
+  const ref = ClosePopUps(() => {
     closePopUp();
   });
 console.log(recipe);
