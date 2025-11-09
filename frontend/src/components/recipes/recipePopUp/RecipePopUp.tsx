@@ -16,7 +16,7 @@ export const RecipePopUp: React.FC<Props> = ({
   const ref = ClosePopUps(() => {
     closePopUp();
   });
-console.log(recipe);
+
   if (!showPopUp) {
     return null;
   }
@@ -32,12 +32,21 @@ console.log(recipe);
           <h3>{recipe.name}</h3>
           <p>Average rating: </p>
           {getStarRating(recipe.average_rating)}
-          {recipe.url_source && <a href={recipe.url_source} target="_blank">View the recipe</a>}
+          {recipe.url_source && (
+            <a href={recipe.url_source} target="_blank">
+              View the recipe
+            </a>
+          )}
           {recipe.source && <p>{recipe.source}</p>}
-          <p>Cooked {recipe.times_cooked === 1 ? "once" : `${recipe.times_cooked} times`}</p>
+          <p>
+            Cooked{" "}
+            {recipe.times_cooked === 1
+              ? "once"
+              : `${recipe.times_cooked} times`}
+          </p>
           <ul>
-            {recipe.comments.map(comment => (
-                <li>{comment}</li>
+            {recipe.comments.map((comment) => (
+              <li key={comment}>{comment}</li>
             ))}
           </ul>
         </div>
@@ -45,22 +54,3 @@ console.log(recipe);
     </div>
   );
 };
-
-// {
-//     "id": 1,
-//     "name": "Leek and Potato soup",
-//     "url_source": "https://www.theguardian.com/food/2024/oct/30/how-to-make-leek-potato-soup-recipe-felicity-cloake",
-//     "source": null,
-//     "times_cooked": 3,
-//     "average_rating": 5,
-//     "comments": [
-//         "not enough ingredients but it was still tasty",
-//         "best recipe :-)",
-//         "Worshipping at Felicity Cloake's feet"
-//     ],
-//     "meals": [
-//         1,
-//         2,
-//         3
-//     ]
-// },
