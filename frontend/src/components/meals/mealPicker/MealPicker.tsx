@@ -52,6 +52,12 @@ export function MealPicker(): JSX.Element {
 
   return (
     <div className="meal-card">
+        <button
+        disabled={day.toLocaleDateString() === today.toLocaleDateString()}
+        onClick={() => {
+            setFormattedDate(formatDate(today))
+            setDay(today)
+        }}>Jump to today</button>
       <div className="date-picker">
         <FaCircleArrowLeft
           onClick={() => setFormattedDate(formatDate(changeDate(day, false)))}
