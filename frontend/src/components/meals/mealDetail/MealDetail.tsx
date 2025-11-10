@@ -19,20 +19,25 @@ export function MealDetail(props: Props): JSX.Element {
       )}
       {props.meals.map((meal) => (
         <div key={meal.name}>
-          <h3>{meal.name}</h3>
+          <h3>{meal.name.toLowerCase()}</h3>
           {getStarRating(meal.rating)}
-          <p>{meal.comment}</p>
-          <button onClick={() => {
-            setShowPopUp(true)
-            setSelectedRecipe(meal.recipe)
-          }}>Recipe information</button>
+          {meal.comment && <p className="meal-comment">&ldquo;{meal.comment}&rdquo;</p>}
+          <button
+            className="recipe-info"
+            onClick={() => {
+              setShowPopUp(true);
+              setSelectedRecipe(meal.recipe);
+            }}
+          >
+            Recipe Information
+          </button>
         </div>
       ))}
 
       <RecipePopUp
         showPopUp={showPopUp}
         closePopUp={() => setShowPopUp(false)}
-        recipe={props.recipes.find(recipe => recipe.id === selectedRecipe)}
+        recipe={props.recipes.find((recipe) => recipe.id === selectedRecipe)}
       />
     </div>
   );

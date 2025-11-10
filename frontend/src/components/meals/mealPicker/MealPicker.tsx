@@ -1,6 +1,12 @@
 import { useEffect, useState, type JSX } from "react";
-import { getMeals, getRecipes, type Meal, type Recipe } from "../../../api/apiClient";
+import {
+  getMeals,
+  getRecipes,
+  type Meal,
+  type Recipe,
+} from "../../../api/apiClient";
 import { MealDetail } from "../mealDetail/MealDetail";
+import { FaCircleArrowRight, FaCircleArrowLeft } from "react-icons/fa6";
 
 export function MealPicker(): JSX.Element {
   const [meals, setMeals] = useState<Meal[]>([]);
@@ -39,29 +45,27 @@ export function MealPicker(): JSX.Element {
 
   useEffect(() => {
     getMeals()
-      .then(response => setMeals(response))
-      .catch(err => console.error(err));
-    getRecipes()
-        .then(response => setRecipes(response))
+      .then((response) => setMeals(response))
+      .catch((err) => console.error(err));
+    getRecipes().then((response) => setRecipes(response));
   }, []);
-
-
 
   return (
     <div className="meal-card">
       <div className="date-picker">
-        <button
+        <FaCircleArrowLeft
           onClick={() => setFormattedDate(formatDate(changeDate(day, false)))}
-        >
-          {"<"}
-        </button>
+          className="arrow-button"
+        />
         <h2>{formattedDate}</h2>
-        <button
-          disabled={day.toLocaleDateString() === today.toLocaleDateString()}
-          onClick={() => setFormattedDate(formatDate(changeDate(day, true)))}
-        >
-          {">"}
-        </button>
+        {day.toLocaleDateString() === today.toLocaleDateString() ? (
+          <FaCircleArrowRight className="arrow-button disabled" />
+        ) : (
+          <FaCircleArrowRight
+            onClick={() => setFormattedDate(formatDate(changeDate(day, true)))}
+            className="arrow-button"
+          />
+        )}
       </div>
       <MealDetail
         meals={meals.filter(
