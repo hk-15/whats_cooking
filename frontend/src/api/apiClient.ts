@@ -77,6 +77,19 @@ export async function getRecipes(): Promise<Recipe[]> {
   return await response.json();
 }
 
+export async function updateRecipeCount(id: number, number: number) {
+  const response = await fetch(`http://127.0.0.1:8000/recipe/${id}/`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({"times_cooked": number}),
+  });
+  if (!response.ok) {
+    throw new Error(await response.json());
+  }
+}
+
 export async function addComment(comment: CommentRequest) {
   const response = await fetch(`http://127.0.0.1:8000/comment/`, {
     method: "POST",

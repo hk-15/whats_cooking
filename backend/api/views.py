@@ -22,6 +22,18 @@ class RecipeViewset(viewsets.ViewSet):
         else:
             return Response(serializer.errors, status=400)
     
+    def partial_update(self, request, pk):
+        try:
+            recipe = Recipe.objects.get(pk=pk)
+        except Recipe.DoesNotExist:
+            return Response({"error": "Recipe not found"}, status=404)
+        serializer = self.serializer_class(recipe, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=200)
+        else:
+            return Response(serializer.errors, status=400)
+    
 class MealViewset(viewsets.ViewSet):
     permission_classes = [permissions.AllowAny]
     queryset = Meal.objects.all()

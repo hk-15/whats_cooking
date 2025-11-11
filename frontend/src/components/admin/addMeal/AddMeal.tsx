@@ -4,6 +4,7 @@ import {
   addComment,
   addMeal,
   getRecipes,
+  updateRecipeCount,
   type FormStatus,
   type Recipe,
 } from "../../../api/apiClient";
@@ -96,6 +97,8 @@ export function AddMeal(): JSX.Element {
         meal: newMeal.id,
       };
       addComment(commentData);
+      const timesCooked = recipes.find(recipe => recipe.id === selectedRecipe.value)?.times_cooked;
+      if (timesCooked) updateRecipeCount(selectedRecipe.value, (timesCooked + 1));
       setFormStatus("FINISHED");
       reset();
       setShowMessage(true);
