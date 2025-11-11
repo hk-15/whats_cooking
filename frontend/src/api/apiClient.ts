@@ -1,5 +1,15 @@
+export type FormStatus = "READY" | "SUBMITTING" | "FINISHED" | "ERROR";
+
 export interface Meal {
   id: number;
+  name: string;
+  recipe: number;
+  rating: number;
+  date_cooked: string;
+  comment?: string;
+}
+
+export interface MealRequest {
   name: string;
   recipe: number;
   rating: number;
@@ -36,6 +46,19 @@ export async function getMeals(): Promise<Meal[]> {
     },
   });
   return await response.json();
+}
+
+export async function addMeal(meal: MealRequest) {
+  const response = await fetch(`http://127.0.0.1:8000/meal/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(meal),
+  });
+  if (!response.ok) {
+    throw new Error(await response.json());
+  }
 }
 
 export async function getRecipes(): Promise<Recipe[]> {
