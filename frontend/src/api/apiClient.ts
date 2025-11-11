@@ -14,7 +14,6 @@ export interface MealRequest {
   recipe: number;
   rating: number;
   date_cooked: string;
-  comment?: string;
 }
 
 export interface Recipe {
@@ -39,6 +38,12 @@ export const emptyRecipe: Recipe = {
   meals: [],
 };
 
+export interface CommentRequest {
+  text: string,
+  recipe: number,
+  meal: number
+}
+
 export async function getMeals(): Promise<Meal[]> {
   const response = await fetch(`http://127.0.0.1:8000/meal/`, {
     headers: {
@@ -48,7 +53,7 @@ export async function getMeals(): Promise<Meal[]> {
   return await response.json();
 }
 
-export async function addMeal(meal: MealRequest) {
+export async function addMeal(meal: MealRequest): Promise<Meal> {
   const response = await fetch(`http://127.0.0.1:8000/meal/`, {
     method: "POST",
     headers: {
@@ -56,9 +61,11 @@ export async function addMeal(meal: MealRequest) {
     },
     body: JSON.stringify(meal),
   });
+  const data = await response.json();
   if (!response.ok) {
-    throw new Error(await response.json());
+    throw new Error(data);
   }
+  return data;
 }
 
 export async function getRecipes(): Promise<Recipe[]> {
@@ -68,4 +75,17 @@ export async function getRecipes(): Promise<Recipe[]> {
     },
   });
   return await response.json();
+}
+
+export async function addComment(comment: CommentRequest) {
+  const response = await fetch(`http://127.0.0.1:8000/comment/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(comment),
+  });
+  if (!response.ok) {
+    throw new Error(await response.json());
+  }
 }
