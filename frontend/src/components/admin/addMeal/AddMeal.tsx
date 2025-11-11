@@ -74,7 +74,7 @@ export function AddMeal(): JSX.Element {
       <form onSubmit={handleSubmit(submitForm)}>
         <SearchableDropdown
           dropdownItems={recipes.map(({ name, id }) => ({ name, id }))}
-          placeholderText={"Select a recipe or create a new one"}
+          placeholderText={"Select a recipe"}
           getSelected={setSelectedRecipe}
         />
         <label htmlFor="name">
