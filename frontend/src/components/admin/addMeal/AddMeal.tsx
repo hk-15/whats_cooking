@@ -4,7 +4,7 @@ import {
   addComment,
   addMeal,
   getRecipes,
-  updateRecipeCount,
+  updateRecipeRatings,
   type FormStatus,
   type Recipe,
 } from "../../../api/apiClient";
@@ -90,17 +90,25 @@ export function AddMeal(): JSX.Element {
         rating: rating,
       };
       const newMeal = await addMeal(mealData);
-      console.log(newMeal.id);
-      const commentData = {
-        text: data.comment,
-        recipe: selectedRecipe.value,
-        meal: newMeal.id,
-      };
-      addComment(commentData);
-      const timesCooked = recipes.find(recipe => recipe.id === selectedRecipe.value)?.times_cooked;
-      if (timesCooked) updateRecipeCount(selectedRecipe.value, (timesCooked + 1));
+      if (data.comment) {
+        const commentData = {
+          text: data.comment,
+          recipe: selectedRecipe.value,
+          meal: newMeal.id,
+        };
+        addComment(commentData);
+      }
+      const currentRatingsSum = recipes.find(
+        (recipe) => recipe.id === selectedRecipe.value
+      )?.ratings_sum;
+      if (currentRatingsSum !== undefined)
+        updateRecipeRatings(
+          selectedRecipe.value,
+          currentRatingsSum + mealData.rating
+        );
       setFormStatus("FINISHED");
       reset();
+      setRating(0);
       setShowMessage(true);
       setFadeOut(false);
       setTimeout(() => {

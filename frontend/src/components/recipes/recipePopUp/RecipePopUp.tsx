@@ -17,6 +17,8 @@ export const RecipePopUp: React.FC<Props> = ({
     closePopUp();
   });
 
+  const timesCooked = recipe?.meals.length;
+
   if (!showPopUp) {
     return null;
   }
@@ -34,15 +36,15 @@ export const RecipePopUp: React.FC<Props> = ({
             <div>
               <p className="no-margin-bottom recipe-label">Cooked</p>
 
-              {recipe.times_cooked === 1
+              {timesCooked === 1
                 ? "once"
-                : recipe.times_cooked === 2
+                : timesCooked === 2
                 ? "twice"
-                : `${recipe.times_cooked} times`}
+                : `${timesCooked} times`}
             </div>
             <div className="recipe-rating">
               <p className="no-margin-bottom recipe-label">Average rating</p>
-              {getStarRating(recipe.average_rating)}
+              {getStarRating(Math.round(recipe.ratings_sum / recipe.meals.length))}
             </div>
           </div>
           {recipe.source && (

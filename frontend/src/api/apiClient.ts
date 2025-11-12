@@ -21,8 +21,7 @@ export interface Recipe {
   name: string;
   url_source?: string;
   source?: string;
-  times_cooked: number;
-  average_rating: number;
+  ratings_sum: number;
   comments: string[];
   meals: number[];
 }
@@ -32,8 +31,7 @@ export const emptyRecipe: Recipe = {
   name: "",
   url_source: "",
   source: "",
-  times_cooked: 0,
-  average_rating: 0,
+  ratings_sum: 0,
   comments: [],
   meals: [],
 };
@@ -77,13 +75,13 @@ export async function getRecipes(): Promise<Recipe[]> {
   return await response.json();
 }
 
-export async function updateRecipeCount(id: number, number: number) {
+export async function updateRecipeRatings(id: number, number: number) {
   const response = await fetch(`http://127.0.0.1:8000/recipe/${id}/`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({"times_cooked": number}),
+    body: JSON.stringify({"ratings_sum": number}),
   });
   if (!response.ok) {
     throw new Error(await response.json());
