@@ -37,9 +37,14 @@ export const emptyRecipe: Recipe = {
 };
 
 export interface CommentRequest {
-  text: string,
-  recipe: number,
-  meal: number
+  text: string;
+  recipe: number;
+  meal: number;
+}
+
+export interface User {
+  username: string;
+  password: string;
 }
 
 export async function getMeals(): Promise<Meal[]> {
@@ -81,7 +86,7 @@ export async function updateRecipeRatings(id: number, number: number) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({"ratings_sum": number}),
+    body: JSON.stringify({ ratings_sum: number }),
   });
   if (!response.ok) {
     throw new Error(await response.json());
@@ -99,4 +104,26 @@ export async function addComment(comment: CommentRequest) {
   if (!response.ok) {
     throw new Error(await response.json());
   }
+}
+
+export async function logIn(user: User) {
+  const response = await fetch("http://127.0.0.1:8000/login/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      accept: "application/json",
+    },
+    body: JSON.stringify(user),
+  });
+
+  if (!response.ok) {
+    let errorMessage = "Something went wrong. Please try again.";
+    try {
+      const error = await response.json();
+      errorMessage = error.message || errorMessage;
+    } finally {
+      throw new Error(errorMessage);
+    }
+  }
+  return response.json();
 }
