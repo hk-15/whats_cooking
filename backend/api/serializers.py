@@ -33,3 +33,12 @@ class RegisterSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
         return user
+    
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField()
+
+    def to_representation(self, instance):
+        ret = super().to_representation(instance)
+        ret.pop('password', None)
+        return ret
