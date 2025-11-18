@@ -1,24 +1,10 @@
 import {
-  createContext,
   useEffect,
   useState,
   type JSX,
   type ReactNode,
 } from "react";
-
-export interface LoginContextType {
-  token: string;
-  username: string;
-  logIn: (token: string, username: string) => void;
-  logOut: () => void;
-}
-
-export const LoginContext = createContext<LoginContextType>({
-  token: "",
-  username: "",
-  logIn: () => {},
-  logOut: () => {},
-});
+import { LoginContext } from "./LoginContext";
 
 interface LoginManagerProps {
   children: ReactNode;

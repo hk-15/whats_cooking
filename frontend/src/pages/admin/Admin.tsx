@@ -1,8 +1,8 @@
 import { useContext, type JSX } from "react";
 import { Page } from "../page/Page";
 import { AddMeal } from "../../components/admin/addMeal/AddMeal";
-import { LoginContext } from "../../components/loginManager/LoginManager";
 import { LoginForm } from "../../components/loginForm/LoginForm";
+import { LoginContext } from "../../components/loginManager/LoginContext";
 
 export function Admin(): JSX.Element {
   const loginContext = useContext(LoginContext);

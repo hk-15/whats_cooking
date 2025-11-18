@@ -1,8 +1,8 @@
 import { useContext, useState, type JSX } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { LoginContext } from "../loginManager/LoginManager";
 import { logIn, type FormStatus } from "../../api/apiClient";
+import { LoginContext } from "../loginManager/LoginContext";
 
 export const LoginForm: React.FC = (): JSX.Element => {
   const [status, setStatus] = useState<FormStatus>("READY");

@@ -116,14 +116,9 @@ export async function logIn(user: User) {
     body: JSON.stringify(user),
   });
 
+  const data = await response.json();
   if (!response.ok) {
-    let errorMessage = "Something went wrong. Please try again.";
-    try {
-      const error = await response.json();
-      errorMessage = error.message || errorMessage;
-    } finally {
-      throw new Error(errorMessage);
-    }
+    throw new Error(data);
   }
-  return response.json();
+  return data;
 }
