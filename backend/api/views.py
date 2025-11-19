@@ -9,7 +9,7 @@ from knox.models import AuthToken
 User = get_user_model()
 
 class RecipeViewset(viewsets.ViewSet):
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
 
@@ -39,7 +39,7 @@ class RecipeViewset(viewsets.ViewSet):
             return Response(serializer.errors, status=400)
     
 class MealViewset(viewsets.ViewSet):
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Meal.objects.all()
     serializer_class = MealSerializer
 
@@ -57,7 +57,7 @@ class MealViewset(viewsets.ViewSet):
             return Response(serializer.errors, status=400)
         
 class CommentViewset(viewsets.ViewSet):
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
 

@@ -57,10 +57,13 @@ export async function getMeals(): Promise<Meal[]> {
 }
 
 export async function addMeal(meal: MealRequest): Promise<Meal> {
+  const token = localStorage.getItem("token");
   const response = await fetch(`http://127.0.0.1:8000/meal/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      accept: "application/json",
+      Authorization: `Token ${token ? token : ""}`,
     },
     body: JSON.stringify(meal),
   });
@@ -81,10 +84,13 @@ export async function getRecipes(): Promise<Recipe[]> {
 }
 
 export async function updateRecipeRatings(id: number, number: number) {
+  const token = localStorage.getItem("token");
   const response = await fetch(`http://127.0.0.1:8000/recipe/${id}/`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
+      accept: "application/json",
+      Authorization: `Token ${token ? token : ""}`,
     },
     body: JSON.stringify({ ratings_sum: number }),
   });
@@ -94,10 +100,13 @@ export async function updateRecipeRatings(id: number, number: number) {
 }
 
 export async function addComment(comment: CommentRequest) {
+  const token = localStorage.getItem("token");
   const response = await fetch(`http://127.0.0.1:8000/comment/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      accept: "application/json",
+      Authorization: `Token ${token ? token : ""}`,
     },
     body: JSON.stringify(comment),
   });
