@@ -12,14 +12,6 @@ export function Admin(): JSX.Element {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [refresh, setRefresh] = useState(false);
 
-  if (loginContext.token === "") {
-    return (
-      <Page>
-        <LoginForm />
-      </Page>
-    );
-  }
-
   useEffect(() => {
     getRecipes()
       .then((response) => {
@@ -28,6 +20,14 @@ export function Admin(): JSX.Element {
       })
       .catch((error) => console.error(error));
   }, [refresh]);
+
+  if (loginContext.token === "") {
+    return (
+      <Page>
+        <LoginForm />
+      </Page>
+    );
+  }
 
   return (
     <Page>
