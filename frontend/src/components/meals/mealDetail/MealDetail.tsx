@@ -1,7 +1,7 @@
 import { useState, type JSX } from "react";
 import { type Meal, type Recipe } from "../../../api/apiClient";
-import { RecipePopUp } from "../../recipes/recipePopUp/RecipePopUp";
 import { getStarRating } from "../../getStarRating/getStarRating";
+import { RecipePopUp } from "../../recipePopUp/RecipePopUp";
 
 interface Props {
   meals: Meal[];

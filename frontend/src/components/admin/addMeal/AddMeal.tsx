@@ -1,9 +1,8 @@
-import { useEffect, useState, type JSX } from "react";
+import { useState, type JSX } from "react";
 import { useForm } from "react-hook-form";
 import {
   addComment,
   addMeal,
-  getRecipes,
   updateRecipeRatings,
   type FormStatus,
   type Recipe,
@@ -11,8 +10,11 @@ import {
 import { SearchableDropdown } from "../../searchableDropdown/SearchableDropdown";
 import { FaStar } from "react-icons/fa6";
 
-export function AddMeal(): JSX.Element {
-  const [recipes, setRecipes] = useState<Recipe[]>([]);
+interface Props {
+  recipes: Recipe[]
+}
+
+export function AddMeal(props: Props): JSX.Element {
   const [showMessage, setShowMessage] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
   const [selectedRecipe, setSelectedRecipe] = useState<{
@@ -24,11 +26,7 @@ export function AddMeal(): JSX.Element {
   const [formStatus, setFormStatus] = useState<FormStatus>("READY");
   const [formErrors, setFormErrors] = useState({ recipe: "", rating: "" });
 
-  useEffect(() => {
-    getRecipes()
-      .then((response) => setRecipes(response))
-      .catch((error) => console.error(error));
-  }, []);
+
 
   const colors = {
     black: "#000000ff",
@@ -74,7 +72,7 @@ export function AddMeal(): JSX.Element {
       });
       return;
     }
-    if (selectedRecipe.value === 0) {
+    if (rating === 0) {
       setFormErrors({
         recipe: "",
         rating: "Please rate your meal.",
@@ -98,7 +96,7 @@ export function AddMeal(): JSX.Element {
         };
         addComment(commentData);
       }
-      const currentRatingsSum = recipes.find(
+      const currentRatingsSum = props.recipes.find(
         (recipe) => recipe.id === selectedRecipe.value
       )?.ratings_sum;
       if (currentRatingsSum !== undefined)
@@ -126,7 +124,7 @@ export function AddMeal(): JSX.Element {
     <div>
       <form onSubmit={handleSubmit(submitForm)}>
         <SearchableDropdown
-          dropdownItems={recipes.map(({ name, id }) => ({ name, id }))}
+          dropdownItems={props.recipes.map(({ name, id }) => ({ name, id }))}
           placeholderText={"Select a recipe"}
           getSelected={setSelectedRecipe}
         />

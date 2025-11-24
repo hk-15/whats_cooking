@@ -26,6 +26,12 @@ export interface Recipe {
   meals: number[];
 }
 
+export interface RecipeRequest {
+  name: string;
+  url_source?: string;
+  source?: string;
+}
+
 export const emptyRecipe: Recipe = {
   id: 0,
   name: "",
@@ -85,6 +91,28 @@ export async function getRecipes(): Promise<Recipe[]> {
     },
   });
   return await response.json();
+}
+
+export async function addRecipe(recipe: RecipeRequest): Promise<Meal> {
+  const token = localStorage.getItem("token");
+  const response = await fetch(`http://127.0.0.1:8000/recipe/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      accept: "application/json",
+      Authorization: `Token ${token ? token : ""}`,
+    },
+    body: JSON.stringify(recipe),
+  });
+  const data = await response.json();
+  if (!response.ok) {
+    if (response.status === 401) {
+      localStorage.removeItem("token");
+      window.location.href = "/";
+    }
+    throw new Error(data);
+  }
+  return data;
 }
 
 export async function updateRecipeRatings(id: number, number: number) {
@@ -154,7 +182,7 @@ export async function logOut() {
       Authorization: `Token ${token ? token : ""}`,
     },
   });
-  
+
   if (!response.ok) {
     throw new Error();
   } else localStorage.removeItem("token");

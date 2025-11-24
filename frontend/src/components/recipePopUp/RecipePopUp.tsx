@@ -1,6 +1,7 @@
-import { ClosePopUps } from "../../closePopUps/ClosePopUps";
-import type { Recipe } from "../../../api/apiClient";
-import { getStarRating } from "../../getStarRating/getStarRating";
+import type { Recipe } from "../../api/apiClient";
+import { ClosePopUps } from "../closePopUps/ClosePopUps";
+import { getStarRating } from "../getStarRating/getStarRating";
+
 
 type Props = {
   showPopUp: boolean;

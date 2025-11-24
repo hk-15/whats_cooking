@@ -5,7 +5,8 @@
 
   color-scheme: light dark;
   color: #3E3D3D;
-  background-color: #A4F989;
+  /* background-color: #A4F989; */
+  background-image: linear-gradient(to bottom right, #A4F989, #89DCF9);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
