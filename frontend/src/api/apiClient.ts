@@ -69,6 +69,10 @@ export async function addMeal(meal: MealRequest): Promise<Meal> {
   });
   const data = await response.json();
   if (!response.ok) {
+    if (response.status === 401) {
+      localStorage.removeItem("token");
+      window.location.href = "/";
+    }
     throw new Error(data);
   }
   return data;
@@ -95,6 +99,10 @@ export async function updateRecipeRatings(id: number, number: number) {
     body: JSON.stringify({ ratings_sum: number }),
   });
   if (!response.ok) {
+    if (response.status === 401) {
+      localStorage.removeItem("token");
+      window.location.href = "/";
+    }
     throw new Error(await response.json());
   }
 }
@@ -111,6 +119,10 @@ export async function addComment(comment: CommentRequest) {
     body: JSON.stringify(comment),
   });
   if (!response.ok) {
+    if (response.status === 401) {
+      localStorage.removeItem("token");
+      window.location.href = "/";
+    }
     throw new Error(await response.json());
   }
 }
@@ -130,4 +142,20 @@ export async function logIn(user: User) {
     throw new Error(data);
   }
   return data;
+}
+
+export async function logOut() {
+  const token = localStorage.getItem("token");
+  const response = await fetch("http://127.0.0.1:8000/logout/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      accept: "application/json",
+      Authorization: `Token ${token ? token : ""}`,
+    },
+  });
+  
+  if (!response.ok) {
+    throw new Error();
+  } else localStorage.removeItem("token");
 }
