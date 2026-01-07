@@ -1,6 +1,5 @@
 import { useContext, useState, type JSX } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { logIn, type FormStatus } from "../../api/apiClient";
 import { LoginContext } from "../loginManager/LoginContext";
 
@@ -8,7 +7,6 @@ export const LoginForm: React.FC = (): JSX.Element => {
   const [status, setStatus] = useState<FormStatus>("READY");
   const [error, setError] = useState<string>("");
   const loginContext = useContext(LoginContext);
-  const navigate = useNavigate();
 
   const { register, handleSubmit } = useForm({
     mode: "onChange",
@@ -24,7 +22,6 @@ export const LoginForm: React.FC = (): JSX.Element => {
       .then((response) => {
         loginContext.logIn(response.token, response.user.username);
         setStatus("FINISHED");
-        navigate("/admin");
       })
       .catch((err) => {
         setStatus("ERROR");
