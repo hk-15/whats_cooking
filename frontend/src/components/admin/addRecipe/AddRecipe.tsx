@@ -20,14 +20,14 @@ export function AddRecipe(props: Props): JSX.Element {
   } = useForm({
     mode: "onChange",
     defaultValues: {
-      name: "",
+      recipeName: "",
       url_source: "",
       source: "",
     },
   });
 
   async function submitForm(data: {
-    name: string;
+    recipeName: string;
     url_source?: string;
     source?: string;
   }) {
@@ -39,7 +39,12 @@ export function AddRecipe(props: Props): JSX.Element {
     }
     try {
       setFormStatus("SUBMITTING");
-      await addRecipe(data);
+      const recipeData = {
+        name: data.recipeName,
+        url_source: data.url_source,
+        source: data.source,
+      };
+      await addRecipe(recipeData);
       setFormStatus("FINISHED");
       reset();
       props.getRefresh(true);
@@ -59,12 +64,12 @@ export function AddRecipe(props: Props): JSX.Element {
   return (
     <div>
       <form onSubmit={handleSubmit(submitForm)}>
-        <label htmlFor="name">
+        <label htmlFor="recipeName">
           Name *
           <input
-            id="name"
+            id="recipeName"
             type="text"
-            {...register("name", {
+            {...register("recipeName", {
               required: true,
               pattern: {
                 value: /^.{1,100}/,
@@ -73,8 +78,8 @@ export function AddRecipe(props: Props): JSX.Element {
             })}
           />
         </label>
-        {errors.name && (
-          <span className="form-error">{errors.name.message}</span>
+        {errors.recipeName && (
+          <span className="form-error">{errors.recipeName.message}</span>
         )}
         <label htmlFor="url_source">
           Link
