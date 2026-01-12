@@ -6,6 +6,7 @@ import { LoginContext } from "../../components/loginManager/LoginContext";
 import LogOutButton from "../../components/logOut/LogOut";
 import { AddRecipe } from "../../components/admin/addRecipe/AddRecipe";
 import { getRecipes, type Recipe } from "../../api/apiClient";
+import "./Admin.scss";
 
 export function Admin(): JSX.Element {
   const loginContext = useContext(LoginContext);
