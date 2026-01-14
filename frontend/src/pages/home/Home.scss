@@ -1,3 +1,7 @@
+.admin-button {
+    margin-bottom: 1rem;
+}
+
 .meal-card {
     padding: 0 3rem 3rem;
 
@@ -6,16 +10,10 @@
         justify-content: center;
         align-items: center;
 
-        h2 {
-            padding: 0 4rem;
-            font-variant: all-small-caps;
-        }
-
         .arrow-button {
             padding: 0;
             font-size: 2rem;
         }
-
 
         .arrow-button.disabled {
             color: grey;
@@ -114,7 +112,9 @@
         .date-picker h2 {
             padding: 0 2rem;
         }
-    };
+    }
+
+    ;
 
     .pop-up {
         width: 80%;

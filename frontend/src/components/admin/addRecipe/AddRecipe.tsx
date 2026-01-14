@@ -63,7 +63,7 @@ export function AddRecipe(props: Props): JSX.Element {
 
   return (
     <div>
-      <form onSubmit={handleSubmit(submitForm)}>
+      <form className="admin-form" onSubmit={handleSubmit(submitForm)}>
         <label htmlFor="recipeName">
           Name *
           <input
@@ -90,7 +90,7 @@ export function AddRecipe(props: Props): JSX.Element {
           <input id="source" type="text" {...register("source")} />
         </label>
         {formErrors && <span className="form-error">{formErrors}</span>}
-        <button disabled={formStatus === "SUBMITTING"} type="submit">
+        <button className="submit-button" disabled={formStatus === "SUBMITTING"} type="submit">
           Add recipe
         </button>
         {formStatus === "ERROR" && (

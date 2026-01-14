@@ -122,7 +122,7 @@ export function AddMeal(props: Props): JSX.Element {
 
   return (
     <div>
-      <form onSubmit={handleSubmit(submitForm)}>
+      <form className="admin-form" onSubmit={handleSubmit(submitForm)}>
         <SearchableDropdown
           dropdownItems={props.recipes.map(({ name, id }) => ({ name, id }))}
           placeholderText={"Select a recipe"}
@@ -183,7 +183,7 @@ export function AddMeal(props: Props): JSX.Element {
             <span className="form-error">{formErrors.rating}</span>
           )}
         </div>
-        <button disabled={formStatus === "SUBMITTING"} type="submit">
+        <button className="submit-button" disabled={formStatus === "SUBMITTING"} type="submit">
           Log meal
         </button>
         {formStatus === "ERROR" && (

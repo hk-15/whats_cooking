@@ -10,7 +10,10 @@ export function Home(): JSX.Element {
   return (
     <Page>
       {loginContext.token && (
-        <button onClick={() => (window.location.href = "admin/")}>
+        <button
+          className="admin-button"
+          onClick={() => (window.location.href = "admin/")}
+        >
           Admin dashboard
         </button>
       )}

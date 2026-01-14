@@ -30,7 +30,7 @@ export const LoginForm: React.FC = (): JSX.Element => {
   }
 
   return (
-    <form className="account-form" onSubmit={handleSubmit(submitForm)}>
+    <form className="admin-form" onSubmit={handleSubmit(submitForm)}>
       <label htmlFor="username">
         Username
         <input

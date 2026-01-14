@@ -23,6 +23,7 @@ a {
   color: #5A3BF7;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #4623F6;
 }
@@ -43,6 +44,8 @@ h1 {
 
 h2 {
   font-size: 2rem;
+  padding: 0 4rem;
+  font-variant: all-small-caps;
 }
 
 h3 {
@@ -60,9 +63,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #F9A689;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
