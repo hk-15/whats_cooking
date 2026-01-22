@@ -4,10 +4,22 @@
 
 .meal-card {
     padding: 0 3rem 3rem;
+    perspective: 1200px;
 
     .post-it-card {
         margin: 2rem;
-        border-radius: 1rem;
+        width: 70vw;
+        height: 50vh;
+        border-radius: 12px;
+        background: white;
+        transform-origin: bottom right;
+        transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1),            background-color 0.2s ease;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+        
+        &.is-turning {
+            transform:
+                rotateZ(-2deg) rotateY(-2deg) translateY(-2px);
+        }
 
         .date-picker {
             display: flex;
