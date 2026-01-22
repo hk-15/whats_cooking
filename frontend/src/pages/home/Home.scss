@@ -5,37 +5,42 @@
 .meal-card {
     padding: 0 3rem 3rem;
 
-    .date-picker {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .post-it-card {
+        margin: 2rem;
+        border-radius: 1rem;
 
-        .arrow-button {
-            padding: 0;
-            font-size: 2rem;
+        .date-picker {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .arrow-button {
+                padding: 0;
+                font-size: 2rem;
+            }
+
+            .arrow-button.disabled {
+                color: grey;
+            }
+
+            .arrow-button.disabled:hover {
+                cursor: default;
+            }
+
+            .arrow-button:hover {
+                cursor: pointer;
+            }
         }
 
-        .arrow-button.disabled {
-            color: grey;
+        .meal-comment {
+            font-style: italic;
+            font-size: 1.25rem;
+            font-family: Georgia, 'Times New Roman', Times, serif;
         }
 
-        .arrow-button.disabled:hover {
-            cursor: default;
+        button.recipe-info {
+            margin-top: 1rem;
         }
-
-        .arrow-button:hover {
-            cursor: pointer;
-        }
-    }
-
-    .meal-comment {
-        font-style: italic;
-        font-size: 1.25rem;
-        font-family: Georgia, 'Times New Roman', Times, serif;
-    }
-
-    button.recipe-info {
-        margin-top: 1rem;
     }
 }
 

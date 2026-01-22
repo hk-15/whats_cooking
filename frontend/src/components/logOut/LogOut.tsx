@@ -18,7 +18,7 @@ export default function LogOutButton() {
 
   return (
     <button className="logout-button" onClick={performLogOut}>
-      Log out
+      log out
     </button>
   );
 }

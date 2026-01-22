@@ -184,7 +184,7 @@ export function AddMeal(props: Props): JSX.Element {
           )}
         </div>
         <button className="submit-button" disabled={formStatus === "SUBMITTING"} type="submit">
-          Log meal
+          log meal
         </button>
         {formStatus === "ERROR" && (
           <p>Something went wrong. Please try again.</p>

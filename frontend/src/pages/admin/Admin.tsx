@@ -32,9 +32,9 @@ export function Admin(): JSX.Element {
 
   return (
     <Page>
-      <h2>Add a Meal</h2>
+      <h2>add a meal</h2>
       <AddMeal recipes={recipes} />
-      <h2>Add a Recipe</h2>
+      <h2>add a recipe</h2>
       <AddRecipe getRefresh={setRefresh} />
       <LogOutButton />
     </Page>

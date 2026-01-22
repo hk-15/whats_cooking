@@ -91,7 +91,7 @@ export function AddRecipe(props: Props): JSX.Element {
         </label>
         {formErrors && <span className="form-error">{formErrors}</span>}
         <button className="submit-button" disabled={formStatus === "SUBMITTING"} type="submit">
-          Add recipe
+          add recipe
         </button>
         {formStatus === "ERROR" && (
           <p>Something went wrong. Please try again.</p>
