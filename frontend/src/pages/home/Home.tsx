@@ -9,6 +9,7 @@ export function Home(): JSX.Element {
 
   return (
     <Page>
+      <MealPicker />
       {loginContext.token && (
         <button
           className="admin-button"
@@ -17,7 +18,6 @@ export function Home(): JSX.Element {
           admin dashboard
         </button>
       )}
-      <MealPicker />
     </Page>
   );
 }

@@ -13,7 +13,7 @@ export function MealDetail(props: Props): JSX.Element {
   const [selectedRecipe, setSelectedRecipe] = useState<number>(0);
 
   return (
-    <div>
+    <div className="meal-detail">
       {props.meals.length === 0 && (
         <p>What&#8217;s cooking? Nothing apparently.</p>
       )}

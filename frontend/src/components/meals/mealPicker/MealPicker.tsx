@@ -61,6 +61,21 @@ export function MealPicker(): JSX.Element {
     getRecipes().then((response) => setRecipes(response));
   }, []);
 
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (event.key === "ArrowLeft") {
+        setFormattedDate(formatDate(changeDate(new Date(day), false)));
+        setColour((prev) => getRandomColour(prev));
+      } else if (event.key === "ArrowRight" && day.toLocaleDateString() !== today.toLocaleDateString()) {
+        setFormattedDate(formatDate(changeDate(new Date(day), true)));
+        setColour((prev) => getRandomColour(prev));
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+    return () => window.removeEventListener("keydown", handleKeyPress);
+  }, [day, today]);
+
   return (
     <div className="meal-card">
       <button

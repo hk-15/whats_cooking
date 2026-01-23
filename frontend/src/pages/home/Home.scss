@@ -13,6 +13,7 @@
         border-radius: 12px;
         background: white;
         transition: background-color 0.3s ease;
+        overflow-y: scroll;
 
         .date-picker {
             display: flex;
@@ -44,10 +45,13 @@
             }
         }
 
-        .meal-comment {
-            font-style: italic;
-            font-size: 1.25rem;
-            font-family: Georgia, 'Times New Roman', Times, serif;
+        .meal-detail {
+            padding: 0 1rem;
+
+            .meal-comment {
+                font-style: italic;
+                font-size: 1.25rem;
+            }
         }
 
         button.recipe-info {
@@ -63,7 +67,7 @@
     top: 20%;
 
     width: 60%;
-    max-height: 70%;
+    max-height: 80%;
     overflow-y: scroll;
 
     border: 1px solid grey;
@@ -129,9 +133,7 @@
         .date-picker h2 {
             padding: 0 2rem;
         }
-    }
-
-    ;
+    };
 
     .pop-up {
         width: 80%;
