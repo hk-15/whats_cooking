@@ -6,19 +6,19 @@ What's Cooking is a full-stack app for tracking meals you've cooked. Django REST
 ## Architecture & Data Flow
 
 ### Backend (Django REST Framework)
-- **Core Models** ([backend/api/models.py](backend/api/models.py)): 
+- **Core Models** ([backend/api/models.py](../backend/api/models.py)): 
   - `Recipe`: Base recipe data (name, url_source, source, ratings_sum)
   - `Meal`: Cooked meal record tied to a Recipe (includes rating, date_cooked)
   - `Comment`: OneToOne to Meal, Foreign Key to Recipe (tied to specific meal instances)
-- **ViewSets** ([backend/api/views.py](backend/api/views.py)): Custom ViewSets handle CRUD for each model with manual serialization
+- **ViewSets** ([backend/api/views.py](../backend/api/views.py)): Custom ViewSets handle CRUD for each model with manual serialization
 - **Authentication**: Knox token-based auth. Login returns token stored in localStorage by frontend. Endpoints use `IsAuthenticatedOrReadOnly` permission.
-- **CORS**: Configured for `http://localhost:5173` only ([backend/controller/settings.py](backend/controller/settings.py))
+- **CORS**: Configured for `http://localhost:5173` only ([backend/controller/settings.py](../backend/controller/settings.py))
 
 ### Frontend (React + TypeScript + Vite)
-- **API Client** ([frontend/src/api/apiClient.ts](frontend/src/api/apiClient.ts)): Fetch-based HTTP client with TypeScript interfaces (Meal, Recipe, Comment)
-- **Auth Context** ([frontend/src/components/loginManager/LoginContext.tsx](frontend/src/components/loginManager/LoginContext.tsx)): Provides token and username globally
+- **API Client** ([frontend/src/api/apiClient.ts](../frontend/src/api/apiClient.ts)): Fetch-based HTTP client with TypeScript interfaces (Meal, Recipe, Comment)
+- **Auth Context** ([frontend/src/components/loginManager/LoginContext.tsx](../frontend/src/components/loginManager/LoginContext.tsx)): Provides token and username globally
 - **Pages**: Home (meal picker), Admin (meal/recipe management)
-- **Styling**: SCSS modules per component (e.g., [Frontend/src/pages/home/Home.scss](Frontend/src/pages/home/Home.scss))
+- **Styling**: SCSS modules per component (e.g., [frontend/src/pages/home/Home.scss](../frontend/src/pages/home/Home.scss))
 
 ## Critical Workflows
 
@@ -54,7 +54,7 @@ npm run test          # Jest tests
 - **Manual ViewSet Implementation**: Avoid ModelViewSet; implement `list()`, `create()`, `partial_update()` manually with explicit error handling
 - **Read-Only Relations**: Serializers use `SlugRelatedField(read_only=True)` for nested objects (e.g., Recipe.comments, Meal.comment)
 - **Token Auth**: Frontend retrieves token from login endpoint, stores in localStorage, includes `Authorization: Token <token>` header on authenticated requests
-- **401 Handling**: Frontend redirects to "/" and clears token on 401 response ([frontend/src/api/apiClient.ts](frontend/src/api/apiClient.ts))
+- **401 Handling**: Frontend redirects to "/" and clears token on 401 response ([frontend/src/api/apiClient.ts](../frontend/src/api/apiClient.ts))
 - **Frontend Type Safety**: Use strict TypeScript types for API responses. Define request/response types explicitly (e.g., `MealRequest`, `Recipe`, `CommentRequest`). Avoid `any` types; leverage discriminated unions for form states like `FormStatus`
 
 ## Dependencies & Integration Points
@@ -69,4 +69,4 @@ npm run test          # Jest tests
 
 **Adding a new model**: Update models.py → create migration → add serializer → add ViewSet with list/create/partial_update → register in router
 **API endpoint changes**: Frontend types in apiClient.ts must match backend serializer fields
-**Frontend component testing**: Use Jest + @testing-library/react (see [frontend/src/pages/admin/Admin.test.tsx](frontend/src/pages/admin/Admin.test.tsx) as reference)
+**Frontend component testing**: Use Jest + @testing-library/react (see [frontend/src/pages/admin/Admin.test.tsx](../frontend/src/pages/admin/Admin.test.tsx) as reference)
