@@ -12,14 +12,7 @@
         height: 50vh;
         border-radius: 12px;
         background: white;
-        transform-origin: bottom right;
-        transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1),            background-color 0.2s ease;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-        
-        &.is-turning {
-            transform:
-                rotateZ(-2deg) rotateY(-2deg) translateY(-2px);
-        }
+        transition: background-color 0.3s ease;
 
         .date-picker {
             display: flex;
@@ -29,6 +22,7 @@
             .arrow-button {
                 padding: 0;
                 font-size: 2rem;
+                transition: all 0.2s ease;
             }
 
             .arrow-button.disabled {
@@ -41,6 +35,12 @@
 
             .arrow-button:hover {
                 cursor: pointer;
+                transform: scale(1.2);
+                filter: brightness(0.8);
+            }
+
+            .arrow-button:active:not(.disabled) {
+                transform: scale(0.95);
             }
         }
 

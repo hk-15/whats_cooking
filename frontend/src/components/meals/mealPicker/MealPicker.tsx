@@ -46,7 +46,6 @@ export function MealPicker(): JSX.Element {
   const [formattedDate, setFormattedDate] = useState(formatDate(day));
   const today = new Date();
   const [colour, setColour] = useState<string>("#a7f8ef");
-  const [isTurning, setIsTurning] = useState(false);
 
   function changeDate(date: Date, increment: boolean) {
     if (increment) date.setDate(date.getDate() + 1);
@@ -69,32 +68,17 @@ export function MealPicker(): JSX.Element {
         onClick={() => {
           setFormattedDate(formatDate(today));
           setDay(today);
-          setIsTurning(true);
-          setTimeout(() => {
-            setColour((prev) => getRandomColour(prev));
-          }, 400);
-          setTimeout(() => {
-            setIsTurning(false);
-          }, 800);
+          setColour((prev) => getRandomColour(prev));
         }}
       >
         jump to today
       </button>
-      <div
-        className={`post-it-card ${isTurning ? "is-turning" : ""}`}
-        style={{ backgroundColor: colour }}
-      >
+      <div className={"post-it-card"} style={{ backgroundColor: colour }}>
         <div className="date-picker">
           <FaCircleArrowLeft
             onClick={() => {
               setFormattedDate(formatDate(changeDate(day, false)));
-              setIsTurning(true);
-              setTimeout(() => {
-                setColour((prev) => getRandomColour(prev));
-              }, 400);
-              setTimeout(() => {
-                setIsTurning(false);
-              }, 800);
+              setColour((prev) => getRandomColour(prev));
             }}
             className="arrow-button"
           />
@@ -105,13 +89,7 @@ export function MealPicker(): JSX.Element {
             <FaCircleArrowRight
               onClick={() => {
                 setFormattedDate(formatDate(changeDate(day, true)));
-                setIsTurning(true);
-                setTimeout(() => {
-                  setColour((prev) => getRandomColour(prev));
-                }, 400);
-                setTimeout(() => {
-                  setIsTurning(false);
-                }, 800);
+                setColour((prev) => getRandomColour(prev));
               }}
               className="arrow-button"
             />
