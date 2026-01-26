@@ -1,25 +1,50 @@
-.admin-form {
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
+.add-meal {
+    background-image: linear-gradient(to top, #F9A689, #DE89F9);
+}
 
-    label {
-        padding: .5rem;
+.add-recipe {
+    background-image: linear-gradient(to top, #89DCF9, #DE89F9);
+}
+
+.admin-form-container {
+    padding: 1rem;
+    border-radius: .5rem;
+    margin-bottom: 1rem;
+    width: 50vw;
+
+    .no-margin-top {
+        margin-top: 0;
+    }
+    
+    .admin-form {
         display: flex;
-        justify-content: space-between;
-    }
+        flex-direction: column;
+        margin: 0 auto;
 
-    input {
-        margin-left: 1rem;
-    }
+        label {
+            padding: .5rem;
+            display: flex;
+            justify-content: space-between;
+        }
 
-    .account-button {
-        align-self: center;
-        margin-top: 1rem;
-    }
+        input,
+        textarea {
+            margin-left: 1rem;
+            width: 60%;
+        }
 
-    .submit-button {
-        margin: 1rem 0;
+        #date_cooked {
+            width: auto;
+        }
+
+        .account-button {
+            align-self: center;
+            margin-top: 1rem;
+        }
+
+        .submit-button {
+            margin: 1rem 0;
+        }
     }
 }
 
@@ -27,8 +52,18 @@
     margin: 1rem;
 }
 
+@media (max-width: 768px) {
+    .admin-form-container {
+        width: 80vw;
+    }
+}
+
 @media (max-width: 340px) {
-    .admin-form {
-        width: 90%;
+    .admin-form-container {
+        width: 90vw;
+
+        .admin-form {
+            width: 90%;
+        }
     }
 }

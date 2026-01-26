@@ -32,10 +32,14 @@ export function Admin(): JSX.Element {
 
   return (
     <Page>
-      <h2>add a meal</h2>
-      <AddMeal recipes={recipes} />
-      <h2>add a recipe</h2>
-      <AddRecipe getRefresh={setRefresh} />
+      <div className="admin-form-container add-meal">
+        <h2 className="no-margin-top">add a meal</h2>
+        <AddMeal recipes={recipes} />
+      </div>
+      <div className="admin-form-container add-recipe">
+        <h2 className="no-margin-top">add a recipe</h2>
+        <AddRecipe getRefresh={setRefresh} />
+      </div>
       <LogOutButton />
     </Page>
   );

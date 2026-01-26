@@ -161,7 +161,7 @@ export function AddMeal(props: Props): JSX.Element {
         )}
         <label htmlFor="comment">
           Comments
-          <input id="comment" type="text" {...register("comment")} />
+          <textarea id="comment" {...register("comment")}></textarea>
         </label>
         <div>
           {stars.map((_, index) => {
